@@ -41,7 +41,7 @@ profiles:
   # - icon: brands/instagram
   #   url: https://www.instagram.com/
   - icon: brands/github
-    url: https://www.github.com/
+    url: https://www.github.com/jnaramore
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/jason-naramore-8112701b/
   # Link to a PDF of your resume/CV - upload it to `static/uploads/resume.pdf`
