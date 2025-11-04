@@ -23,7 +23,7 @@ tags:
 
 PPG signals are collected from optical sensors on smart watches and pulse oximeters to measure heart rate and blood oxygen levels. New research has indicated the shape of the PPG waveform contains information on blood pressure, which could allow for "cuff-less" blood pressure measurements. This project lays out the pulse wave analysis method, that is how to process raw PPG signals into blood pressure values using machine learning.
 
-Code for this analysis can be found in the PPG_to_BP github [repository](https://physionet.org/content/pcst/1.0.0/).
+Code for this analysis can be found in the PPG_to_BP github [repository](https://github.com/jnaramore/PPG_to_BP).
 
 ## Methods
 
@@ -60,7 +60,7 @@ Figure 2 shows the XGBoost model prediction results. Both CV methods result in b
 
 A more qualitive thing we can observe in the no-leak-CV result is that the algorithm performs poorly at predicting low and high blood pressures, it is essentially predicting most of them within a normal range at about 110 to 140 mmHg. Even though the algorithm is an improvement over the mean SBP, it provides very little or even misleading information for the cases that matter, i.e. patients with abnormally high blood pressure. The PPGBP dataset is high quality in that it comes from a controlled experiment, but the number of points at extreme high and low blood pressures is low.
 
-The only current product I am aware of that uses PPG to estimate blood pressure is [hilo](https://hilo.com/), which has only recently received market clearance. This device requires monthly calibration. This pulse wave analysis may work better when calibrated to each person or site, because of the unnaccountable differences between individuals with only PPG measurements.
+The only current product I am aware of that uses PPG to estimate blood pressure is [hilo](https://hilo.com/), which has only recently received market clearance, and requires monthly calibration. The pulse wave analysis presented within this post may work better when calibrated to each person or site, because of the unnaccountable differences between individuals with only PPG measurements. Or, a device that simulataneously measures ECG or PPG at a second site may be accurate using the pulse transit time (PTT) technique.
 
 Although the prediction results aren't great, they indicate there could be some association between the PPG shape and blood pressure.  Similar results were found with other datasets like [SENSORS](https://www.mdpi.com/1424-8220/21/6/2167). Future work might include a weighting or sampling of the more extreme blood pressure values.
 
