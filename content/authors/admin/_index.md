@@ -59,4 +59,4 @@ highlight_name: true
 website: ""
 ---
 
-Posts related to machine learning, statistical modeling, and biosignal processing.
+Exploring topics related to machine learning, statistical modeling, biosignal processing, and natural language processing.
