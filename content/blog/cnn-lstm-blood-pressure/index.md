@@ -24,7 +24,7 @@ tags:
 
 This notebook demos how to estimate blood pressure from PPG waveforms using a convolutional neural network (CNN) with Long Short Term Memory (LSTM) layers. CNN models are typically used in vision applications to recogize shapes and patterns, and LSTM layers can help identify temporal dependencies in those patterns.
 
-PPG signals are 1-dimensional over time, so 1D convoutions are used, and we incorporate the 1st-3rd derivatives of PPG signals, for a total of 4x 1-dimensional channels as input. The CNN essentially fits an encoding to the PPG data, which helps identify the most useful patterns needed to estimate blood pressure. That encoding is fed into the LSTM layers, and then a fully connected layer for the final blood pressure prediction. In practice we could have the fully connected layer output both systolic and diastilic blood pressure values, but for now it's just outputting systolic.
+PPG signals are 1-dimensional over time, so 1D convoutions are used, and we incorporate the 1st-3rd derivatives of PPG signals, for a total of 4x 1-dimensional channels as input. The CNN essentially fits an encoding to the PPG data, which helps identify the most useful patterns needed to estimate blood pressure. That encoding is fed into the LSTM layers, and then a fully connected layer for the final blood pressure prediction. In practice we could have the fully connected layer output both systolic and diastolic blood pressure values, but for now it's just outputting systolic.
 
 Similar CNN+LSTM architecture has been described in literature. The featured image for this post shows a the model diagram from the paper:
 
@@ -60,8 +60,8 @@ Let's plot a sample PPG signal with it's first derivative:
 ``` python
 idx = 0
 
-ppg = mat_data['ppg'][0][0][0]
-vpg = mat_data['vpg'][0][0][0]
+ppg = mat_data['ppg'][0][idx][0]
+vpg = mat_data['vpg'][0][idx][0]
 
 ppg_scale = np.max(ppg) - np.min(ppg)
 plt.plot(ppg/ppg_scale,label='PPG',color='black',linewidth=3)
@@ -254,9 +254,9 @@ class CNN_LSTM_Regressor(nn.Module):
 
 ## Training
 
-Training and evaluation functions are defined below. I prefer to use mean absolute error (MAE) for comparison to other research papers
+Training and evaluation functions are defined below. I prefer to visualize mean absolute error (MAE) for comparison to other research papers.
 
-$$ \text{MAE} = \frac{1}{n} \sum_{i=1}^n | y_i - \hat{y} |$$
+<!-- $$ \text{MAE} = \frac{1}{n} \sum_{i=1}^n | y_i - \hat{y} |$$ -->
 
 ``` python
 # ---------------------------
@@ -302,7 +302,7 @@ print("Device available for running: ", device)
 
     Device available for running:  mps
 
-Finally here's the training loop. I've found the parameters below to work well, which includes 4 CNN layers and 2 LSTM layers. The CNN kernel size is set to 60,
+Finally here's the training loop. I've found the parameters below to work well, which includes 4 CNN layers and 2 LSTM layers. The CNN kernel size starts at 240, which covers a large portion of the pulse, as we can see in the sample pulse above.
 
 ``` python
 #create dataloaders
