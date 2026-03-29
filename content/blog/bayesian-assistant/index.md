@@ -205,7 +205,7 @@ def model_inference(model_name, num_samples=23):
 
 Accuracies for each model per round are calculated based on the ratio of correct predictions in all 23 users for the 2-feature dataset. These results generally agree with the paper, in that Bayesian and Oracle LLM models outperform the original LLM. But the paper does show that the Bayesian LLM outperforms the Oracle, which might be caused by the small sample size or relative simplicity of the 2-feature dataset. As noted before, the Bayesian and Oracle models are sensitive to prompt input, and also consume more CPU/memory to perform inference than the original Llama.
 
-![figure]('flight_interaction_results.png' "title")
+![](flight_interaction_results.png "My Results")
 
 
 ## Next Steps
