@@ -16,6 +16,8 @@ tags:
   - Ollama
   - Bayesian
   - HuggingFace
+
+math: true
 ---
 
 ## Introduction
